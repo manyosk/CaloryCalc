@@ -13,11 +13,13 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 
 public class CaloryCalcMainWnd {
 
 	private JFrame frame;
+	private PotravinyPanel potravinyPanel;
 
 	/**
 	 * Launch the application.
@@ -47,19 +49,27 @@ public class CaloryCalcMainWnd {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 764, 570);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 		
 		JMenu mnFile = new JMenu("File");
+		mnFile.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		menuBar.add(mnFile);
 		
 		JMenuItem mntmClose = new JMenuItem("Close");
+		mntmClose.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+		});
+		mntmClose.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		mnFile.add(mntmClose);
 		
 		JMenu mnAbout = new JMenu("About");
+		mnAbout.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		menuBar.add(mnAbout);
 		
 		JToolBar toolBar = new JToolBar();
@@ -67,20 +77,28 @@ public class CaloryCalcMainWnd {
 		frame.getContentPane().add(toolBar, BorderLayout.NORTH);
 		
 		JButton btnPotraviny = new JButton("Potraviny");
+		btnPotraviny.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnPotraviny.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				if(potravinyPanel == null)
+				{
+					potravinyPanel = new PotravinyPanel();
+				}
 				
-				PotravinyPanel panel = new PotravinyPanel();
-				panel.setVisible(true);
-				frame.getContentPane().add(panel, BorderLayout.CENTER);
+				potravinyPanel.setVisible(true);
+				frame.getContentPane().add(potravinyPanel, BorderLayout.CENTER);
+				frame.revalidate();
+				
 			}
 		});
 		toolBar.add(btnPotraviny);
 		
 		JButton btnRecepty = new JButton("Recepty");
+		btnRecepty.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		toolBar.add(btnRecepty);
 		
 		JButton btnMenu = new JButton("Menu");
+		btnMenu.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		toolBar.add(btnMenu);
 	}
 
