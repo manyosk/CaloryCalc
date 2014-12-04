@@ -7,6 +7,8 @@ import javax.swing.JButton;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.JTable;
+import javax.swing.border.TitledBorder;
+import java.awt.Font;
 
 public class PotravinyPanel extends JPanel {
 
@@ -28,6 +30,7 @@ public class PotravinyPanel extends JPanel {
 		setLayout(null);
 		
 		JLabel lblCategoria = new JLabel("Categoria");
+		lblCategoria.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblCategoria.setBounds(10, 11, 58, 14);
 		add(lblCategoria);
 		
@@ -36,73 +39,84 @@ public class PotravinyPanel extends JPanel {
 		add(comboBoxCategoria);
 		
 		JButton btnNovaKategoria = new JButton("Nova Kategoria");
+		btnNovaKategoria.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnNovaKategoria.setBounds(191, 7, 107, 23);
 		add(btnNovaKategoria);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 36, 610, 11);
+		separator.setBounds(10, 36, 679, 11);
 		add(separator);
 		
+		table = new JTable();
+		table.setBounds(331, 58, 358, 306);
+		add(table);
+		
+		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(null, "Info", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBounds(20, 55, 289, 137);
+		add(panel);
+		panel.setLayout(null);
+		
 		JLabel lblPotravina = new JLabel("Potravina");
-		lblPotravina.setBounds(10, 58, 46, 14);
-		add(lblPotravina);
+		lblPotravina.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblPotravina.setBounds(10, 21, 46, 14);
+		panel.add(lblPotravina);
 		
 		textField = new JTextField();
-		textField.setBounds(65, 55, 233, 20);
-		add(textField);
+		textField.setBounds(66, 18, 204, 20);
+		panel.add(textField);
 		textField.setColumns(10);
 		
-		JLabel lblB = new JLabel("B");
-		lblB.setBounds(191, 106, 26, 14);
-		add(lblB);
-		
 		JLabel lblS = new JLabel("S");
-		lblS.setBounds(30, 106, 26, 14);
-		add(lblS);
-		
-		JLabel lblT = new JLabel("T");
-		lblT.setBounds(109, 106, 26, 14);
-		add(lblT);
-		
-		JLabel lblKcal = new JLabel("kCal");
-		lblKcal.setBounds(272, 106, 26, 14);
-		add(lblKcal);
+		lblS.setBounds(10, 54, 16, 14);
+		panel.add(lblS);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(16, 131, 40, 20);
-		add(textField_1);
+		textField_1.setBounds(20, 51, 40, 20);
+		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
+		JLabel lblT = new JLabel("T");
+		lblT.setBounds(76, 54, 16, 14);
+		panel.add(lblT);
+		
 		textField_2 = new JTextField();
-		textField_2.setBounds(95, 131, 40, 20);
-		add(textField_2);
+		textField_2.setBounds(86, 51, 40, 20);
+		panel.add(textField_2);
 		textField_2.setColumns(10);
 		
+		JLabel lblB = new JLabel("B");
+		lblB.setBounds(141, 54, 15, 14);
+		panel.add(lblB);
+		
 		textField_3 = new JTextField();
-		textField_3.setBounds(169, 131, 40, 20);
-		add(textField_3);
+		textField_3.setBounds(151, 49, 40, 20);
+		panel.add(textField_3);
 		textField_3.setColumns(10);
 		
+		JLabel lblKcal = new JLabel("kCal");
+		lblKcal.setBounds(201, 54, 26, 14);
+		panel.add(lblKcal);
+		
 		textField_4 = new JTextField();
-		textField_4.setBounds(261, 131, 40, 20);
-		add(textField_4);
+		textField_4.setBounds(224, 49, 46, 20);
+		panel.add(textField_4);
 		textField_4.setColumns(10);
 		
 		JButton btnNovy = new JButton("Novy");
-		btnNovy.setBounds(30, 193, 89, 23);
-		add(btnNovy);
+		btnNovy.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnNovy.setBounds(10, 92, 89, 23);
+		panel.add(btnNovy);
 		
 		JButton btnUlozit = new JButton("Ulozit");
-		btnUlozit.setBounds(129, 193, 89, 23);
-		add(btnUlozit);
+		btnUlozit.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnUlozit.setBounds(102, 92, 89, 23);
+		panel.add(btnUlozit);
 		
 		JButton btnZmazat = new JButton("Zmazat");
-		btnZmazat.setBounds(228, 193, 89, 23);
-		add(btnZmazat);
-		
-		table = new JTable();
-		table.setBounds(331, 55, 289, 375);
-		add(table);
+		btnZmazat.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnZmazat.setBounds(190, 92, 89, 23);
+		panel.add(btnZmazat);
 
 	}
 }
