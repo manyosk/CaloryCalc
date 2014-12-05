@@ -1,7 +1,5 @@
 package caloryCalcUI;
 
-import java.awt.EventQueue;
-
 import javax.swing.JDialog;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -13,7 +11,6 @@ import javax.swing.JTable;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Window.Type;
 
 public class CategorieDlg extends JDialog {
 	/**

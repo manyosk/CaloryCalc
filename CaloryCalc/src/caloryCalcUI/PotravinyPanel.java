@@ -8,13 +8,20 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
+
 import java.awt.Font;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JSplitPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import categoryComboBox.*;
+
+import java.sql.*;
 
 public class PotravinyPanel extends JPanel {
 
@@ -37,7 +44,8 @@ public class PotravinyPanel extends JPanel {
 		JLabel lblCategoria = new JLabel("Categoria");
 		lblCategoria.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
-		JComboBox comboBoxCategoria = new JComboBox();
+		CategoryComboBoxModel categoryComboBoxModel = GetCategoryFromDB();
+		CategoryComboBox comboBoxCategoria = new CategoryComboBox(categoryComboBoxModel);
 		comboBoxCategoria.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
 		JButton btnNovaKategoria = new JButton("Nova Kategoria");
@@ -170,5 +178,58 @@ public class PotravinyPanel extends JPanel {
 		panel.add(btnZmazat);
 		setLayout(groupLayout);
 
+	}
+
+	private CategoryComboBoxModel GetCategoryFromDB() 
+	{
+		CategoryComboBoxModel categoryComboBoxModel = null;
+	    try
+	    {
+	      // create our mysql database connection
+	      String myDriver = "com.mysql.jdbc.Driver";
+	      String myUrl = "jdbc:mysql://localhost/calorycalcdb";
+	      Class.forName(myDriver).newInstance();
+	      Connection conn = DriverManager.getConnection(myUrl, "manyosk", "Ildikoooo");
+	       
+	      // our SQL SELECT query. 
+	      // if you only need a few columns, specify them by name instead of using "*"
+	      String query = "SELECT * FROM category";
+	 
+	      // create the java statement
+	      Statement st = conn.createStatement();
+	       
+	      // execute the query, and get a java resultset
+	      ResultSet rs = st.executeQuery(query);
+	       
+	      // iterate through the java resultset
+	      categoryComboBoxModel = new CategoryComboBoxModel();
+	      while (rs.next())
+	      {
+	        int id = rs.getInt("CategoryID");
+	        String category = rs.getString("Category");
+
+	        categoryComboBoxModel.addElement(new CategoryObj(id, category));
+	      }
+	      st.close();
+	    }
+	    catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        }
+		finally
+		{
+			if(categoryComboBoxModel == null)
+			{
+				categoryComboBoxModel = new CategoryComboBoxModel();
+				categoryComboBoxModel.addElement(new CategoryObj(1, "Chyba pri citani dat!"));
+			}
+			return categoryComboBoxModel;
+		}
+		
 	}
 }
